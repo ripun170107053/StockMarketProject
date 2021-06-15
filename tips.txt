@@ -1,0 +1,41 @@
+1.4.    Stock Price details Excel Many to Many
+1.    Company Code – internally will store company Id,we have to use query and join the get company name
+2.    Stock Exchange – internally will store exchane id,we have to use query and join the get exchange name
+3.    Current Price – Stock Price
+4.    Date – Date of the Stock Price
+5.    Time – Stock Price at this Specific time
+ 
+1.5.    IPOs planned:  Many to Many
+1.    id
+2.    Company Name -internally will store company Id,we have to use query and join the get company name
+3.    Stock Exchange -internally will store exchane id,we have to use query and join the get exchange name
+4.    Price per share
+5.    Total number of Shares
+6.    Open Date Time
+7.    Remarks
+--------------------------------------------------------
+1.ipodetail class
+company company
+stockexchange 
+and one property in class
+@ManyToOne(fetch = FetchType.LAZY)      
+      private stockexcahnge stockexchange;
+ 
+  public List<stockexchanges> getstockexchanges () {
+        return stockexchanges;
+    }
+ 
+    public void setstockexchanges(Stockexcahnges stockexchanges) {
+        this.stockexchanegs.add(stockexchanges);
+    }
+ 
+ 
+
+ 2.in   Company class   
+    @OneToOne
+    private Ipodetail ipodetail
+ 
+ 
+3.  in stockexchange class
+        @OneToMany(targetEntity=Ipodetail.class)
+    private List<Stockexchanges> stockexchanges = new ArrayList<>();
