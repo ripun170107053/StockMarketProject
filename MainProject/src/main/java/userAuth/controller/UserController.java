@@ -1,9 +1,6 @@
 package userAuth.controller;
 
 import com.project.ripunjoy.entities.UserEntity;
-import com.project.ripunjoy.entities.companyEntity;
-import com.project.ripunjoy.models.UserModel;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +12,12 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.persistence.EntityNotFoundException;
 import java.io.IOException;
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
@@ -30,18 +28,22 @@ public class  UserController
     @Autowired
     UserRepository userrepo;
 
-    @CrossOrigin(origins ="http://localhost:3000")
+    @RequestMapping(value="/allUsers", method= RequestMethod.GET)
+    public List<UserEntity> x()
+    {
+        return userrepo.findAll();
+    }
+    @CrossOrigin(origins ="http://localhost:3000", allowedHeaders = "*")
     @RequestMapping(value = "/setuserapi",method=RequestMethod.GET)
     public String Stringreactuserapi(@RequestParam Map<String, String> userobj)
     {
         UserEntity usr = new UserEntity();
 
-        usr.setUsername(userobj.get("name")+"from api1");
+        usr.setUsername(userobj.get("username")+"from api1");
         usr.setPassword(userobj.get("password"));
         usr.setEmail(userobj.get("email"));
-//        UserEntity ce = new UserEntity();
-//        BeanUtils.copyProperties(usr,ce);
-//        userrepo.saveAndFlush(ce);
+        //usr.setUserType(userobj.get("usertype"));
+
         userrepo.saveAndFlush(usr);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Responded", "UserController");
@@ -50,15 +52,12 @@ public class  UserController
         return userobj.toString();
     }
 
-    @CrossOrigin(origins ="http://localhost:3000")
+    @CrossOrigin(origins ="http://localhost:3001", allowedHeaders = "*")
     @RequestMapping(value = "/setuserapi2",method=RequestMethod.POST, headers = "Accept=application/json"  )
     public  ResponseEntity<Object> reactuserapi2(@RequestBody UserEntity user) throws ClassNotFoundException, IOException {
 
-//        UserEntity ce = new UserEntity();
-//        BeanUtils.copyProperties(user,ce);
-//        UserEntity usrsaved = userrepo.saveAndFlush(ce);
 
-         UserEntity usrsaved = userrepo.save(user);
+        UserEntity usrsaved = userrepo.save(user);
         // make sure your entity class properties of user are in lower case and match the json,to avoid errors
         System.out.println(user +"check this " +usrsaved.getUsername());
 
@@ -94,8 +93,8 @@ public class  UserController
     {
 
 
-        final String username = "sftrainerram@gmail.com";
-        final String password = "28Oct1974";
+        final String username = "cheggexpert1337@gmail.com";
+        final String password = "LetsLearn@123";
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -113,12 +112,12 @@ public class  UserController
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("sftrainerram@gmail.com"));
+            message.setFrom(new InternetAddress("cricketripunjoy@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("sftrainerram@gmail.com")
+                    InternetAddress.parse("cricketripunjoy@gmail.com")
             );
-            message.setSubject("USer confirmation email");
+            message.setSubject("User Registration confirmation email");
             //     message.setText("Dear Mail Crawler,"
             //           + "\n\n Please do not spam my email!");
             message.setContent(
@@ -135,14 +134,14 @@ public class  UserController
 
 
     @RequestMapping(value="/confirmuser/{userid}", method=RequestMethod.GET)
-    public String welcomepage(@PathVariable Long userid) {
+    public String welcomepage(@PathVariable Long userid) throws EntityNotFoundException {
         Optional<UserEntity> userlist =   userrepo.findById(userid);
         //do a null check for home work
         UserEntity usr = new UserEntity();
         usr = userrepo.getById(userid);
         usr.setConfirmed(true);
         userrepo.save(usr);
-        return "User confirmed" +usr.getUsername();
+        return "User confirmed " +usr.getUsername();
     }
 
 }

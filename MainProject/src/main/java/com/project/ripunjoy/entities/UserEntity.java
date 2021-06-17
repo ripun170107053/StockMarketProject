@@ -10,17 +10,27 @@ public class UserEntity
     @Id @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(name="username")
     private String username;
 
-    @Column
+    @Column(name="password")
     private String password;
-    @Column
+    @Column(name="user_type")
     private boolean userType;
-    @Column
+    @Column(name="email")
     private String email;
-    @Column
+    @Column(name="confirmed")
     private boolean confirmed;
+    @Column(name="mobile")
+    private Long mobile;
+
+    public Long getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(Long mobile) {
+        this.mobile = mobile;
+    }
 
     public UserEntity()
     {

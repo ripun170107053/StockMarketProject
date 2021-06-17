@@ -4,6 +4,7 @@ import excel.dao.ExcelRepository;
 
 import excel.services.ExcelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,15 +25,16 @@ public class excelController
     @Autowired
     ExcelRepository er;
 
+//    @CrossOrigin(origins ="http://localhost:3000", allowedHeaders = "*")
+//    @GetMapping(value="/files")
+//    public String testing()
+//    {
+//        return "Excel files will be shown here";
+//    }
 
-
-
-
-
-
-
-    @PostMapping("/uploadExcel")
-    public String uploadExcel(@RequestParam("file") MultipartFile file) throws IOException, ParseException, SQLException
+    @CrossOrigin(origins ="http://localhost:3002", allowedHeaders = "*")
+    @PostMapping(value="/uploadExcel", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String uploadExcel(@RequestParam MultipartFile file) throws IOException, ParseException, SQLException
     {
 
         es.uploadExcel(file);
