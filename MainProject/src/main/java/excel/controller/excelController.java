@@ -32,7 +32,7 @@ public class excelController
 //        return "Excel files will be shown here";
 //    }
 
-    @CrossOrigin(origins ="*", allowedHeaders = "*")
+    @CrossOrigin(origins ="http://reactphase3ripun.herokuapp.com")
     @PostMapping(value="/uploadExcel", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadExcel(@RequestParam MultipartFile file) throws IOException, ParseException, SQLException
     {

@@ -24,19 +24,19 @@ public class CompanyHomeController
     companyService cs;
 
     private static final Logger log = LoggerFactory.getLogger(CompanyHomeController.class);
-    @CrossOrigin("*")
+    @CrossOrigin(origins ="http://reactphase3ripun.herokuapp.com")
     @GetMapping("/")
     List<companyEntity> index()
     {
         return cr.findAll();
     }
-    @CrossOrigin("*")
+    @CrossOrigin(origins ="http://reactphase3ripun.herokuapp.com")
     @GetMapping("/findById/{id}")
     public Optional<companyEntity> getCompanyDetailsById(@PathVariable(value = "id") Long bookId)
     {
         return cr.findById(bookId);
     }
-    @CrossOrigin("*")
+    @CrossOrigin(origins ="http://reactphase3ripun.herokuapp.com")
     @GetMapping("/getMatchingCompanies/{x}")
     public List<companyEntity> getMatchingCompanies(@PathVariable(value = "x") String p) {
         return cr.findByPattern(p);
@@ -47,13 +47,13 @@ public class CompanyHomeController
 //        return cs.getIPO(p);
 //    }
 
-    @CrossOrigin("*")
+    @CrossOrigin(origins ="http://reactphase3ripun.herokuapp.com")
     @RequestMapping(value = "/add",method=RequestMethod.POST, headers = "Accept=application/json"  )
     public String addNewCompany(@RequestBody companyEntity company) {
         cs.addNewCompany(company);
         return "Successfully added company";
     }
-    @CrossOrigin("*")
+    @CrossOrigin(origins ="http://reactphase3ripun.herokuapp.com")
     @PostMapping("/update")
     public String updateCompany(@RequestBody companyModel company) {
         System.out.println(String.format("Successfully updated %s",company.getCompanyName()));
