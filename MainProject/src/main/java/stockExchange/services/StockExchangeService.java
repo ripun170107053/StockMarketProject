@@ -32,6 +32,12 @@ public class StockExchangeService
         List<companyEntity> ans= sr.getCompaniesListedOn(x);
         return ans;
     }
+    @Transactional
+    public StockExchangeEntity findByName(String x)
+    {
+        StockExchangeEntity ans= sr.findByName(x);
+        return ans;
+    }
 
 
 

@@ -30,10 +30,11 @@ public class stockExchangeHomeController
 
     private static final Logger log = LoggerFactory.getLogger(stockExchangeHomeController.class);
 
+    @CrossOrigin("*")
     @GetMapping("/")
-    public String home()
+    public List<StockExchangeEntity> home()
     {
-        return "stockexchange home";
+        return sj.findAll();
     }
     @GetMapping("/allStockExchanges")
     public List<StockExchangeEntity> getStockExchangesList()
@@ -41,6 +42,12 @@ public class stockExchangeHomeController
         return sj.findAll();
     }
 
+    @CrossOrigin("*")
+    @GetMapping("/allStockExchanges/{id}")
+    public StockExchangeEntity findId(@PathVariable String id)
+    {
+        return se.findByName(id);
+    }
 
     @GetMapping("/findId/{id}")
     public Optional<StockExchangeEntity> findId(@PathVariable Long id)

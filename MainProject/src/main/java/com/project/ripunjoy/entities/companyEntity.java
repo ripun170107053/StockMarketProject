@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name="company")
 public class companyEntity implements Serializable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     public Long id;
     @Column(name="company_name")
     private String companyName;
@@ -59,6 +59,18 @@ public class companyEntity implements Serializable {
         this.id = id;
         this.companyName = name;
 
+    }
+
+    public companyEntity(Long id, String companyName, String turnover, String ceo, String stockExchange, String boardDirector, String sector, String writeup, String companyCode) {
+        this.id = id;
+        this.companyName = companyName;
+        this.turnover = turnover;
+        this.ceo = ceo;
+        this.stockExchange = stockExchange;
+        this.boardDirector = boardDirector;
+        this.sector = sector;
+        this.writeup = writeup;
+        this.companyCode = companyCode;
     }
 
     public Long getId() {

@@ -33,7 +33,7 @@ public class  UserController
     {
         return userrepo.findAll();
     }
-    @CrossOrigin(origins ="http://localhost:3000", allowedHeaders = "*")
+    @CrossOrigin(origins ="http://localhost:3003", allowedHeaders = "*")
     @RequestMapping(value = "/setuserapi",method=RequestMethod.GET)
     public String Stringreactuserapi(@RequestParam Map<String, String> userobj)
     {
@@ -52,7 +52,7 @@ public class  UserController
         return userobj.toString();
     }
 
-    @CrossOrigin(origins ="http://localhost:3001", allowedHeaders = "*")
+    @CrossOrigin(origins ="http://localhost:3003", allowedHeaders = "*")
     @RequestMapping(value = "/setuserapi2",method=RequestMethod.POST, headers = "Accept=application/json"  )
     public  ResponseEntity<Object> reactuserapi2(@RequestBody UserEntity user) throws ClassNotFoundException, IOException {
 

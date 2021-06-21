@@ -6,6 +6,7 @@ import com.project.ripunjoy.models.companyModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -36,12 +37,10 @@ public class companyService
     }
 
     @Transactional
-    public void addNewCompany(companyModel cm)
+    public void addNewCompany(companyEntity cm)
     {
-        companyEntity ce = new companyEntity();
-        BeanUtils.copyProperties(cm,ce);
-        cr.saveAndFlush(ce);
-
+        cr.save(cm);
+        //return ResponseEntity.created("").build();
     }
 
     public String getIPO(String p) 

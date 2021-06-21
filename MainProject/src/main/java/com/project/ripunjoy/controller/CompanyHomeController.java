@@ -24,12 +24,13 @@ public class CompanyHomeController
     companyService cs;
 
     private static final Logger log = LoggerFactory.getLogger(CompanyHomeController.class);
-
+    @CrossOrigin("*")
     @GetMapping("/")
-    String index()
+    List<companyEntity> index()
     {
-        return "Hello";
+        return cr.findAll();
     }
+    @CrossOrigin("*")
     @GetMapping("/findById/{id}")
     public Optional<companyEntity> getCompanyDetailsById(@PathVariable(value = "id") Long bookId)
     {
@@ -45,8 +46,9 @@ public class CompanyHomeController
 //        return cs.getIPO(p);
 //    }
 
-    @PostMapping("/add")
-    public String addNewCompany(@RequestBody companyModel company) {
+    @CrossOrigin("*")
+    @RequestMapping(value = "/add",method=RequestMethod.POST, headers = "Accept=application/json"  )
+    public String addNewCompany(@RequestBody companyEntity company) {
         cs.addNewCompany(company);
         return "Successfully added company";
     }

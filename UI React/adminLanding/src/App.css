@@ -1,6 +1,10 @@
 .App {
   text-align: center;
 }
+.nobul
+{
+  list-style-type: none;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
