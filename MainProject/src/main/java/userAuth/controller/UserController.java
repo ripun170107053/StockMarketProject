@@ -33,7 +33,8 @@ public class  UserController
     {
         return userrepo.findAll();
     }
-    @CrossOrigin(origins ="http://localhost:3003", allowedHeaders = "*")
+
+    @CrossOrigin(origins ="*", allowedHeaders = "*")
     @RequestMapping(value = "/setuserapi",method=RequestMethod.GET)
     public String Stringreactuserapi(@RequestParam Map<String, String> userobj)
     {
@@ -52,7 +53,7 @@ public class  UserController
         return userobj.toString();
     }
 
-    @CrossOrigin(origins ="http://localhost:3003", allowedHeaders = "*")
+    @CrossOrigin(origins ="*", allowedHeaders = "*")
     @RequestMapping(value = "/setuserapi2",method=RequestMethod.POST, headers = "Accept=application/json"  )
     public  ResponseEntity<Object> reactuserapi2(@RequestBody UserEntity user) throws ClassNotFoundException, IOException {
 
@@ -69,7 +70,7 @@ public class  UserController
     }
 
 
-
+    @CrossOrigin("*")
     @RequestMapping(value = "/settestuser",method=RequestMethod.GET)
     public ResponseEntity<UserEntity> getUser()
     {
@@ -88,7 +89,7 @@ public class  UserController
 
 
 
-
+    @CrossOrigin("*")
     public void sendemail(Long userid)
     {
 
@@ -133,6 +134,7 @@ public class  UserController
     }
 
 
+    @CrossOrigin("*")
     @RequestMapping(value="/confirmuser/{userid}", method=RequestMethod.GET)
     public String welcomepage(@PathVariable Long userid) throws EntityNotFoundException {
         Optional<UserEntity> userlist =   userrepo.findById(userid);

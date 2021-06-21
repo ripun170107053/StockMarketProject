@@ -36,6 +36,7 @@ public class CompanyHomeController
     {
         return cr.findById(bookId);
     }
+    @CrossOrigin("*")
     @GetMapping("/getMatchingCompanies/{x}")
     public List<companyEntity> getMatchingCompanies(@PathVariable(value = "x") String p) {
         return cr.findByPattern(p);
@@ -52,6 +53,7 @@ public class CompanyHomeController
         cs.addNewCompany(company);
         return "Successfully added company";
     }
+    @CrossOrigin("*")
     @PostMapping("/update")
     public String updateCompany(@RequestBody companyModel company) {
         System.out.println(String.format("Successfully updated %s",company.getCompanyName()));

@@ -36,6 +36,8 @@ public class stockExchangeHomeController
     {
         return sj.findAll();
     }
+
+    @CrossOrigin("*")
     @GetMapping("/allStockExchanges")
     public List<StockExchangeEntity> getStockExchangesList()
     {
@@ -49,11 +51,14 @@ public class stockExchangeHomeController
         return se.findByName(id);
     }
 
+    @CrossOrigin("*")
     @GetMapping("/findId/{id}")
     public Optional<StockExchangeEntity> findId(@PathVariable Long id)
     {
         return sj.findById(id);
     }
+
+    @CrossOrigin("*")
     @PostMapping("/add")
     public String addNewStockExchange(@RequestBody stockExchangeModel stockExchange) {
 
@@ -63,6 +68,7 @@ public class stockExchangeHomeController
     }
 
     //get companies for this particular stock exchange
+    @CrossOrigin("*")
     @GetMapping("/findCompaniesListedIn/{x}")
     public List<companyEntity> findCompaniesListedIn(@PathVariable String x)
     {

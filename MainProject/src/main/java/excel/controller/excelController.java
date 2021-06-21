@@ -32,7 +32,7 @@ public class excelController
 //        return "Excel files will be shown here";
 //    }
 
-    @CrossOrigin(origins ="http://localhost:3003", allowedHeaders = "*")
+    @CrossOrigin(origins ="*", allowedHeaders = "*")
     @PostMapping(value="/uploadExcel", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String uploadExcel(@RequestParam MultipartFile file) throws IOException, ParseException, SQLException
     {

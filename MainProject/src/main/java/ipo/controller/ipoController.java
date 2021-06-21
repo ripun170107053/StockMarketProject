@@ -19,17 +19,22 @@ public class ipoController
     @Autowired
     IpoService is;
 
+    @CrossOrigin("*")
     @GetMapping("/")
     public String home()
     {
         return "IPO home";
     }
+
+    @CrossOrigin("*")
     @GetMapping("/allIPO")
     public List<ipoDetailsEntity> allIPOsByChronologicalOrder()
     {
         return is.sortIPO();
         //return "Successfully listed all IPOs sorted in ascending order of their opening date (nearest IPO on the top";
     }
+
+    @CrossOrigin("*")
     @PostMapping("/addIPO")
     public String addIPO(@RequestBody ipoDetailsModel ipo)
     {
