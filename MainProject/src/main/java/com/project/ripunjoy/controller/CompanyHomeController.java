@@ -26,9 +26,9 @@ public class CompanyHomeController
     private static final Logger log = LoggerFactory.getLogger(CompanyHomeController.class);
     @CrossOrigin(origins ="http://reactphase3ripun.herokuapp.com")
     @GetMapping("/")
-    List<companyEntity> index()
+    String index()
     {
-        return cr.findAll();
+        return "hello";
     }
     @CrossOrigin(origins ="http://reactphase3ripun.herokuapp.com")
     @GetMapping("/findById/{id}")
