@@ -1,6 +1,11 @@
 package com.project.ripunjoy.models;
 
 import com.project.ripunjoy.entities.companyEntity;
+import excel.entities.stockPriceEntity;
+import ipo.entities.ipoDetailsEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class companyModel {
     private Long id;
@@ -106,4 +111,9 @@ public class companyModel {
     public void setCompanyCode(String companyCode) {
         this.stockCode = companyCode;
     }
+
+    private List<ipoDetailsEntity> ipos = new ArrayList<>();
+
+
+    private List<stockPriceEntity> stockPrices = new ArrayList<>();
 }

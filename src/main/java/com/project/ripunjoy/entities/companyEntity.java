@@ -1,10 +1,13 @@
 package com.project.ripunjoy.entities;
 
+import excel.entities.stockPriceEntity;
+import ipo.entities.ipoDetailsEntity;
 import stockExchange.entities.companyStockExchangeMap;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,16 +32,8 @@ public class companyEntity implements Serializable {
     @Column(name="company_code")
     private String companyCode;
 
-//    @OneToMany(targetEntity = companyStockExchangeMap.class)
-//    private List<companyStockExchangeMap> compstockmap; /////////////////////////////////////////////////////
-//
-//    public List<companyStockExchangeMap> getCompstockmap() {
-//        return compstockmap;
-//    }
-//
-//    public void setCompstockmap(List<companyStockExchangeMap> compstockmap) {
-//        this.compstockmap = compstockmap;
-//    }
+
+
 
     public companyEntity() {
     }
@@ -47,12 +42,7 @@ public class companyEntity implements Serializable {
         this.companyName=name;
     }
 
-//    public companyEntity(Long id, String name, List<companyStockExchangeMap> compstockmap) {
-//        super();
-//        this.id = id;
-//        companyName = name;
-//        this.compstockmap = compstockmap;
-//    }
+
 
     public companyEntity(Long id, String name) {
         super();

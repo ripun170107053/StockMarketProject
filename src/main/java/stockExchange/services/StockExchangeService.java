@@ -9,6 +9,10 @@ import stockExchange.entities.StockExchangeEntity;
 import stockExchange.models.stockExchangeModel;
 
 import javax.transaction.Transactional;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -39,6 +43,28 @@ public class StockExchangeService
         return ans;
     }
 
+    @Transactional
+    public void updateStockExchange(StockExchangeEntity stockExchangeDto)
+    {
+        if(sr.getById(stockExchangeDto.getId())!=null)
+        {
+            sr.save(stockExchangeDto);
+        }
+    }
 
+    @Transactional
+    public void addCompanyToStockExchange(String stockExchangeName, String company) throws SQLException {
+        if(sr.findByName(stockExchangeName) !=null)
+        {
+            String url=System.getenv("SPRING_DATASOURCE_URL");
 
+            Connection connect = DriverManager.getConnection(url,"root","root");
+            PreparedStatement stmt = connect.prepareStatement("Insert into com_to_se(company_name, stockexc_name) values (?,?)");
+            //stmt.setLong(1,1);
+            stmt.setString(1,company);
+            stmt.setString(2,stockExchangeName);
+            stmt.executeUpdate();
+        }
+
+    }
 }

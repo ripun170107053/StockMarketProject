@@ -6,16 +6,18 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import stockExchange.dao.StockExchangeRepository;
 import stockExchange.entities.StockExchangeEntity;
 import stockExchange.models.stockExchangeModel;
 import stockExchange.services.StockExchangeService;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/stockExchange")
 @ComponentScan(basePackages = { "stockExchange"} )
@@ -58,6 +60,11 @@ public class stockExchangeHomeController
         return sj.findById(id);
     }
 
+    @PutMapping("/update")
+    public void editStockExchange(@RequestBody StockExchangeEntity stockExchangeDto){
+        se.updateStockExchange(stockExchangeDto);
+    }
+
     @CrossOrigin("*")
     @PostMapping("/add")
     public String addNewStockExchange(@RequestBody stockExchangeModel stockExchange) {
@@ -75,6 +82,10 @@ public class stockExchangeHomeController
         return se.getCompaniesListedOn(x);
     }
 
+    @PostMapping(path = "/{stockExchangeName}/{company}")
+    public void addCompanyToStockExchange(@PathVariable String stockExchangeName, @PathVariable String company) throws SQLException {
+        se.addCompanyToStockExchange(stockExchangeName, company);
+    }
 
 //    getCompaniesList
 

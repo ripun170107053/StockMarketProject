@@ -4,7 +4,7 @@ import com.project.ripunjoy.models.companyModel;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 
 @Entity
@@ -74,5 +74,13 @@ public class stockPriceEntity
 
     public void setTime(Time time) {
         this.time = time;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

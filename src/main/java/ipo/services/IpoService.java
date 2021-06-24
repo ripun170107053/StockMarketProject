@@ -13,6 +13,7 @@ import stockExchange.models.stockExchangeModel;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -34,6 +35,22 @@ public class IpoService
         ipoDetailsEntity ipo_new = new ipoDetailsEntity();
         BeanUtils.copyProperties(ipo,ipo_new);
         ir.saveAndFlush(ipo_new);
+    }
+    @Transactional
+    public Object getIpoById(Long id)
+    {
+        Optional<ipoDetailsEntity> im = ir.findById(id);
+        if(!im.isPresent()) return null;
+        else return im;
+    }
+    @Transactional
+    public void updateIpo(ipoDetailsEntity ipoDto, Long id)
+    {
+        if(id==null) {
+            return;
+        }
+        ipoDto.setId(id);
+        ir.save(ipoDto);
     }
     //company.company_name is tied to ipoService.company_name
     //ipoService.stock_exchange is tied to stock_exchange_entity.stock_exchange

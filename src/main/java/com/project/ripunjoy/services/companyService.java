@@ -3,6 +3,8 @@ package com.project.ripunjoy.services;
 import com.project.ripunjoy.dao.CompanyRepository;
 import com.project.ripunjoy.entities.companyEntity;
 import com.project.ripunjoy.models.companyModel;
+import excel.entities.stockPriceEntity;
+import excel.models.stockPriceModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -84,4 +86,16 @@ public class companyService
     }
 
 
+    public List<stockPriceEntity> getStocksForThisCompany(String id)
+    {
+        Optional<companyEntity> company = cr.findByName(id);
+        if(!company.isPresent()) {
+            return null;
+        }
+        else
+        {
+            System.out.println("companyIddd" + company.get().getCompanyCode());
+            return cr.getStocksForThisCompanyz(Long.valueOf(company.get().getCompanyCode()));
+        }
+    }
 }

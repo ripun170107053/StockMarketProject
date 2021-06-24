@@ -17,5 +17,4 @@ public interface ExcelRepository extends JpaRepository<stockPriceEntity,Long>
 {
 
 
-
 }

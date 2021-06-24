@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import stockExchange.entities.StockExchangeEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IpoRepository extends JpaRepository<ipoDetailsEntity,Long>
@@ -18,4 +19,7 @@ public interface IpoRepository extends JpaRepository<ipoDetailsEntity,Long>
 
     @Query("SELECT c from ipoDetailsEntity c ORDER BY c.openDateTime ")
     public List<ipoDetailsEntity> sortIPO() ;
+
+
+
 }
